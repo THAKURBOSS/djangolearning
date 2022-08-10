@@ -1,13 +1,15 @@
 # I have created this file 
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def index(request):
-    return HttpResponse('''Home page  <a href="http://127.0.0.1:8000/removepunc">next</a>  ''')
+    params = {'name':'lucky','place':'canada'}
+    return render(request,'index.html',params)
 
 
 def removepunc(request):
-    return HttpResponse('''remove punc  <a href="http://127.0.0.1:8000/index">previous</a>  <a href="http://127.0.0.1:8000/capitalizefirst">next</a>  '''  )
+    return HttpResponse('''remove punc  <a href="http://127.0.0.1:8000">previous</a>  <a href="http://127.0.0.1:8000/capitalizefirst">next</a>  '''  )
 
 def capitalizefirst(request):
     return HttpResponse('''capitalize first  <a href="http://127.0.0.1:8000/removepunc">previous</a>  <a href="http://127.0.0.1:8000/newlineremover">next</a> ''') 
