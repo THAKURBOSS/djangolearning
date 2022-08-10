@@ -4,11 +4,13 @@ from django.shortcuts import render
 
 
 def index(request):
-    params = {'name':'lucky','place':'canada'}
-    return render(request,'index.html',params)
+    
+    return render(request,'index.html')
 
 
 def removepunc(request):
+    djtext = print(request.GET.get('text','default'))
+    print(djtext)
     return HttpResponse('''remove punc  <a href="http://127.0.0.1:8000">previous</a>  <a href="http://127.0.0.1:8000/capitalizefirst">next</a>  '''  )
 
 def capitalizefirst(request):
