@@ -12,8 +12,14 @@ def index(request):
 def analyze(request):
     djtext =request.GET.get('text','default')
     removepunc = request.GET.get('removepunc','off')
-    print(djtext)
-    print(removepunc)
+    fullcaps = request.GET.get('fullcaps','off')
+    newlineremover = request.GET.get('newlineremover','off')
+    extraspaceremover = request.GET.get('extraspaceremover','off')
+    
+    #check checkbox value
+    
+    #if removepunc is on then execute this 
+
     if removepunc == "on":
             
         # analyzed = djtext
@@ -25,6 +31,46 @@ def analyze(request):
                 
         params = {'purpose' : 'remove puncutation','analyzed_text':analyzed}
         return render(request, "analyze.html",params)
+    
+    
+    #to check fullcaps is on 
+    
+    elif(fullcaps == 'on'):
+        analyzed = " "
+        for char in djtext:
+            analyzed = analyzed + char.upper()
+            
+        params = {'purpose' : 'changed to upper case','analyzed_text':analyzed}
+        return render(request, "analyze.html",params)
+    
+    
+    #to remove new line 
+    
+    elif(newlineremover == 'on'):
+        analyzed = " "
+        for char in djtext:
+            if char != '\n':
+             analyzed = analyzed + char
+            
+        params = {'purpose' : 'removed new line','analyzed_text':analyzed}
+        return render(request, "analyze.html",params)
+    
+    #extra space remover
+    
+    elif(extraspaceremover == 'on'):
+        analyzed = " "
+        for index, char in enumerate(djtext):
+            if not (djtext[index] == " " and djtext[index+1] == " "):
+                
+            
+             analyzed = analyzed + char
+            
+        params = {'purpose' : 'removed new line','analyzed_text':analyzed}
+        return render(request, "analyze.html",params)
+    
+    
+    #error
+    
     else:
         return HttpResponse('error')
 # def capitalizefirst(request):
