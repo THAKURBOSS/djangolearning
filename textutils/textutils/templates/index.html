@@ -48,7 +48,7 @@
         </button>
     </div>
     <div class="container">
-        <form action="/analyze" method="get">
+        <form action="/analyze" method="POST">{% csrf_token %}
 
 
             <div class="form-group">
